@@ -2,6 +2,7 @@
 
 !/.gitignore
 !/.zsh*
+!/.zprofile
 
 !/.config
 /.config/*
