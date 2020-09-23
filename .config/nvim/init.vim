@@ -1,10 +1,8 @@
-if &compatible
-    set nocompatible
-endif
+" Add the dein installation directory into runtimepath
+if isdirectory($HOME . '/.local/share/dein/repos/github.com/Shougo/dein.vim')
+  set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
 
-set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
-
-if dein#load_state('~/.local/share/dein')
+  if dein#load_state('~/.local/share/dein')
     call dein#begin('~/.local/share/dein')
 
     " Let dein manage dein
@@ -20,25 +18,39 @@ if dein#load_state('~/.local/share/dein')
 
     call dein#end()
     call dein#save_state()
+
+    " Disable mode message on the last line if vim-airline plugin is installed
+    if !dein#check_install('vim-airline')
+      set noshowmode
+    endif
+  endif
 endif
 
+" Enable file type detection and load indent and plugin files
 filetype plugin indent on
-syntax enable
+" Adjust tab sizes for YAML file type
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-    call dein#install()
+" Enable syntax highlighting
+syntax on
+
+set number         " show line numbers
+set cursorline     " highlight current line
+set mouse=a        " enable mouse support in all modes
+set colorcolumn=80 " highlight 80th column
+set shiftwidth=4   " number of spaces to use for each step of (auto)indent
+set expandtab      " use spaces to insert a <Tab>
+set smarttab       " use 'shiftwidth' blanks in front of a line
+set tabstop=4      " number of spaces that a <Tab> in the file counts for
+
+" Load colorscheme
+if !empty(globpath(&runtimepath, 'colors/snazzy.vim'))
+  colorscheme snazzy
 endif
 
-set number
-set cursorline
+" vim-airline plugin options
+let g:airline_powerline_fonts = 1   " enable powerline fonts
+let g:airline_theme='base16_snazzy' " choose theme
 
-set tabstop=4 shiftwidth=4 expandtab softtabstop=0
-"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-colorscheme snazzy
-
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16_snazzy'
-
+" deoplete options
 let g:deoplete#enable_at_startup = 1
