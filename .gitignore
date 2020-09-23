@@ -1,0 +1,12 @@
+/*
+
+!/.gitignore
+!/.zsh*
+
+!/.config
+/.config/*
+
+!/.config/nvim
+/.config/nvim/*
+
+!/.config/nvim/init.vim
