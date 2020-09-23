@@ -16,15 +16,17 @@ compinit
 
 zstyle ':completion:*' menu select
 
-if [[ ! -o login ]]; then
-    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+ZSH_THEME="/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
+if [[ -n "$DISPLAY" && -f "$ZSH_THEME" ]]; then
+    source "$ZSH_THEME"
     # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 fi
 
 alias ls='ls --color=auto'
-alias dig='dig +short'
 alias diff='diff --color=auto -u'
-alias vim='nvim'
+alias dig='dig +short'
 
-eval "$(rbenv init -)"
+if [[ -n "$(whence rbenv)" ]]; then
+    eval "$(rbenv init -)"
+fi
