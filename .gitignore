@@ -3,6 +3,10 @@
 !/.gitignore
 !/.zsh*
 !/.zprofile
+!/.bashrc
+!/.profile
+!/.commonenv
+!/.commonrc
 
 !/.config
 /.config/*

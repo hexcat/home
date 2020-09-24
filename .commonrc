@@ -1,0 +1,20 @@
+# Configuration that is common between different (interactive) shells
+
+[ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
+
+if [ -d "$HOME/.rbenv/bin" ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+alias ls='ls --color=auto'
+alias diff='diff --color=auto -u'
+alias dig='dig +short'
+
+on_interactive_login () {
+    # If not in GUI terminal and tmux is installed
+    if [ -z "$DISPLAY" ] && command -v tmux > /dev/null; then
+        # try to attach to an existing tmux session, or create new
+        [ -z "$TMUX" ] && (tmux attach || tmux new-session)
+    fi
+}

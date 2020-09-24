@@ -16,17 +16,18 @@ compinit
 
 zstyle ':completion:*' menu select
 
-ZSH_THEME="/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
-if [[ -n "$DISPLAY" && -f "$ZSH_THEME" ]]; then
-    source "$ZSH_THEME"
-    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-    [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+if [[ -n "$DISPLAY" ]]; then
+    zsh_theme="/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
+    if [[ -f "$zsh_theme" ]]; then
+        source "$zsh_theme"
+        # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+        [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+    fi
+    unset zsh_theme
 fi
 
-alias ls='ls --color=auto'
-alias diff='diff --color=auto -u'
-alias dig='dig +short'
+# Load common configuration
+[[ -f "$HOME/.commonrc" ]] && . "$HOME/.commonrc"
 
-if [[ -n "$(whence rbenv)" ]]; then
-    eval "$(rbenv init -)"
-fi
+# Run function at the end of interactive login
+[[ -o login ]] && on_interactive_login

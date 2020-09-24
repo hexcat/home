@@ -1,0 +1,10 @@
+# Configuration that is common between different (login and/or
+# interactive) shells
+
+if command -v nvim > /dev/null; then
+    export EDITOR="nvim"
+elif command -v vim > /dev/null; then
+    export EDITOR="vim"
+else
+    export EDITOR="nano"
+fi
