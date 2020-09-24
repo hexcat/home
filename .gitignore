@@ -8,6 +8,14 @@
 !/.commonenv
 !/.commonrc
 
+!/.vim
+/.vim/*
+
+!/.vim/vimrc
+!/.vim/colors
+/.vim/colors/*
+!/.vim/colors/snazzy.vim
+
 !/.config
 /.config/*
 

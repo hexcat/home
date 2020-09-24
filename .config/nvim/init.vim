@@ -1,3 +1,8 @@
+" Do not configure if Vim's version is less than 8.0
+if v:version < 800
+    finish
+endif
+
 " Add the dein installation directory into runtimepath
 if isdirectory($HOME . '/.local/share/dein/repos/github.com/Shougo/dein.vim')
   set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
@@ -8,13 +13,17 @@ if isdirectory($HOME . '/.local/share/dein/repos/github.com/Shougo/dein.vim')
     " Let dein manage dein
     call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
 
-    " Add or remove your plugins here like this:
+    " Common plugins
     "call dein#add('Shougo/neosnippet.vim')
     "call dein#add('Shougo/neosnippet-snippets')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
-    call dein#add('Shougo/deoplete.nvim')
-    call dein#add('preservim/nerdtree')
+    "call dein#add('preservim/nerdtree')
+
+    " Neovim plugins
+    if has('nvim')
+        call dein#add('Shougo/deoplete.nvim')
+    endif
 
     call dein#end()
     call dein#save_state()
@@ -49,8 +58,8 @@ if !empty(globpath(&runtimepath, 'colors/snazzy.vim'))
 endif
 
 " vim-airline plugin options
-let g:airline_powerline_fonts = 1   " enable powerline fonts
-let g:airline_theme='base16_snazzy' " choose theme
+let g:airline_powerline_fonts = 1     " enable powerline fonts
+let g:airline_theme = 'base16_snazzy' " choose theme
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
