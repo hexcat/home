@@ -30,4 +30,8 @@ fi
 [[ -f "$HOME/.commonrc" ]] && . "$HOME/.commonrc"
 
 # Run function at the end of interactive login
-[[ -o login ]] && on_interactive_login
+if [[ -o login ]]; then
+    on_interactive_login
+else
+    return 0 # eat failed condition's return value
+fi
