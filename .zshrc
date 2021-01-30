@@ -6,13 +6,17 @@ setopt appendhistory autocd extendedglob nomatch
 unsetopt beep notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
-#
-# The following lines were added by compinstall
+
 zstyle :compinstall filename '~/.zshrc'
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+# partial completion suggestions
+zstyle ':completion:*' list-suffixes zstyle ':completion:*' expand prefix suffix
+
+# load completion system
+autoload -Uz compinit && compinit
 
 zstyle ':completion:*' menu select
 
