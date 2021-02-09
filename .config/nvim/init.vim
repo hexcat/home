@@ -57,6 +57,12 @@ if !empty(globpath(&runtimepath, 'colors/snazzy.vim'))
   colorscheme snazzy
 endif
 
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 " vim-airline plugin options
 let g:airline_powerline_fonts = 1     " enable powerline fonts
 let g:airline_theme = 'base16_snazzy' " choose theme
