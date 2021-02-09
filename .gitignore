@@ -12,6 +12,7 @@
 !/.zprofile
 !/.bashrc
 !/.profile
+!/.tmux.conf
 
 # .vim/vimrc
 !/.vim
