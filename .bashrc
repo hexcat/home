@@ -18,6 +18,9 @@ HISTFILESIZE=1000      # size of the history file
 shopt -s histappend    # append to the history file instead of overwriting it
 
 PS1='[\u@\h \W]\$ '
+if [[ -n "$SSH_CONNECTION" ]]; then
+    PROMPT_COMMAND='echo -en "\033]0;$(hostname)\a"'
+fi
 
 completion_file="/usr/share/bash-completion/bash_completion"
 [[ -r "$completion_file" ]] && . "$completion_file"
