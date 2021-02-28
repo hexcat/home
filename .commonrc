@@ -16,6 +16,6 @@ on_interactive_login () {
     # If not in GUI terminal and tmux is installed
     if [ -z "$DISPLAY" ] && command -v tmux > /dev/null; then
         # try to attach to an existing tmux session, or create new
-        [ -z "$TMUX" ] && (tmux attach || tmux new-session)
+        [ -z "$TMUX" ] && tmux new -A -s default && exit 0
     fi
 }
