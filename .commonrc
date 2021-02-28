@@ -10,6 +10,7 @@ fi
 alias ls='ls --color=auto'
 alias diff='diff --color=auto -u'
 alias dig='dig +short'
+alias gg='git log --oneline --graph --all'
 
 on_interactive_login () {
     # If not in GUI terminal and tmux is installed
