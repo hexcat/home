@@ -8,7 +8,7 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
 fi
 
 # Powerlevel10k
-if [[ ! -f ~/.p10k.zsh ]]; then
+if [[ ! -a ~/.p10k.zsh ]]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-  cp "$(basename "$0")/p10k.zsh" ~/.p10k.zsh
+  ln -s "$(basename "$0")/p10k.zsh" ~/.p10k.zsh
 fi
