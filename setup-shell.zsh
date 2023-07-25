@@ -1,8 +1,6 @@
 #!/bin/zsh
 
-set -euo pipefail
-
-install_dir=$(dirname "$0")
+install_dir=${0:a:h}
 
 # Oh My Zsh
 if [[ ! -d ~/.oh-my-zsh ]]; then
@@ -10,17 +8,18 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
 fi
 
 # Powerlevel10k
-if [[ ! -a ~/.p10k.zsh ]]; then
+if [[ ! -a ~/.p10k.zsh.pre-hexcat ]]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-  ln -s "$install_dir/p10k.zsh" ~/.p10k.zsh
+  ln -s --backup --suffix=.pre-hexcat "$install_dir/p10k.zsh" ~/.p10k.zsh
 fi
 
 # fzf
 if [[ ! -d ~/.fzf ]]; then
   git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install --key-bindings --completion
+  ~/.fzf/install --key-bindings --completion --no-update-rc
 fi
 
-if [[ ! -f ~/.zshrc.pre-hexcat-setup ]]; then
-  ln -s --backup --suffix=.pre-hexcat-setup "$install_dir/zshrc" ~/.zshrc
+# Zsh
+if [[ ! -f ~/.zshrc.pre-hexcat ]]; then
+  ln -s --backup --suffix=.pre-hexcat "$install_dir/zshrc" ~/.zshrc
 fi
