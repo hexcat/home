@@ -27,5 +27,5 @@ fi
 # Tmux
 if [[ ! -f ~/.config/tmux/tmux.conf ]]; then
   mkdir -p ~/.config/tmux
-  ls -s "$install_dir/tmux.conf" ~/.config/tmux/tmux.conf
+  ln -s "$install_dir/tmux.conf" ~/.config/tmux/tmux.conf
 fi
